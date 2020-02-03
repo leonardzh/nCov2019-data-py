@@ -88,6 +88,7 @@ def getHistory(data):
 
 def saveAll(data):
     last_time = data['lastUpdateTime'].replace(':','-')
+    print(last_time)
     area_df = getAreaDataFrame(data)
     area_df.to_csv('data/infections/area_{}.csv'.format(last_time),index=False)
     summary = chinaSummary(data)
