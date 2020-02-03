@@ -100,4 +100,4 @@ def saveAll(data):
 def updateNow():
     data = downloadDailyData()
     saveAll(data)
-
+    return data
