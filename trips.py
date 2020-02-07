@@ -13,3 +13,9 @@ url_trip = 'http://2019ncov.nosugartech.com/data.json?'
 json_res = requests.get(url=url_trip).json()['data']
 nosugar_trips = pd.DataFrame.from_records(json_res)
 nosugar_trips.to_csv('data/trips/nosugar_trips.csv')
+
+#腾讯 https://rl.inews.qq.com/h5/trip?from=newsapp
+tx_trip_url = 'https://rl.inews.qq.com/taf/travelFront'
+json_res = requests.get(url=tx_trip_url).json()['data']['list']
+tx_trips = pd.DataFrame.from_records(json_res)
+tx_trips.to_csv('data/trips/tx_trips.csv')

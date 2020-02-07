@@ -14,66 +14,70 @@ def getAreaDataFrame(response_data):
     for country in area_tree:
         df_area = df_area.append({'Country':country['name'],
                    'Province':'',
-                   'City':'',
+                   'City':'',               
                    'AllOrToday':'All',
                    'confirm':country['total']['confirm'],
                    'suspect':country['total']['suspect'],
                    'dead':country['total']['dead'],
                    'heal':country['total']['heal']
                   },ignore_index=True)
-        df_area = df_area.append({'Country':country['name'],
-                   'Province':'',
-                   'City':'',
-                   'AllOrToday':'Today',
-                   'confirm':country['today']['confirm'],
-                   'suspect':country['today']['suspect'],
-                   'dead':country['today']['dead'],
-                   'heal':country['today']['heal']
-                  },ignore_index=True)
+        if(country['today']['isUpdated'] == True):
+            df_area = df_area.append({'Country':country['name'],
+                       'Province':'',
+                       'City':'',               
+                       'AllOrToday':'Today',
+                       'confirm':country['today']['confirm'],
+                       'suspect':country['today']['suspect'],
+                       'dead':country['today']['dead'],
+                       'heal':country['today']['heal']
+                      },ignore_index=True)
         if 'children' in country:
             country_tree = country['children']
             for province in country_tree:
                 #print('pv:{}'.format(province['name']))
                 df_area = df_area.append({'Country':country['name'],
                    'Province':province['name'],
-                   'City':'',
+                   'City':'',               
                    'AllOrToday':'All',
                    'confirm':province['total']['confirm'],
                    'suspect':province['total']['suspect'],
                    'dead':province['total']['dead'],
                    'heal':province['total']['heal']
                   },ignore_index=True)
-                df_area = df_area.append({'Country':country['name'],
-                   'Province':province['name'],
-                   'City':'',
-                   'AllOrToday':'Today',
-                   'confirm':province['today']['confirm'],
-                   'suspect':province['today']['suspect'],
-                   'dead':province['today']['dead'],
-                   'heal':province['today']['heal']
-                  },ignore_index=True)
+                if(province['today']['isUpdated'] == True):
+                    df_area = df_area.append({'Country':country['name'],
+                       'Province':province['name'],
+                       'City':'',               
+                       'AllOrToday':'Today',
+                       'confirm':province['today']['confirm'],
+                       'suspect':province['today']['suspect'],
+                       'dead':province['today']['dead'],
+                       'heal':province['today']['heal']
+                      },ignore_index=True)
                 if 'children' in province:
                     province_tree = province['children']
                     for city in province_tree:
                         df_area = df_area.append({'Country':country['name'],
                            'Province':province['name'],
-                           'City':city['name'],
+                           'City':city['name'],               
                            'AllOrToday':'All',
                            'confirm':city['total']['confirm'],
                            'suspect':city['total']['suspect'],
                            'dead':city['total']['dead'],
                            'heal':city['total']['heal']
                           },ignore_index=True)
-                        df_area = df_area.append({'Country':country['name'],
-                           'Province':province['name'],
-                           'City':city['name'],
-                           'AllOrToday':'Today',
-                           'confirm':city['today']['confirm'],
-                           'suspect':city['today']['suspect'],
-                           'dead':city['today']['dead'],
-                           'heal':city['today']['heal']
-                          },ignore_index=True)
+                        if(city['today']['isUpdated'] == True):
+                            df_area = df_area.append({'Country':country['name'],
+                               'Province':province['name'],
+                               'City':city['name'],               
+                               'AllOrToday':'Today',
+                               'confirm':city['today']['confirm'],
+                               'suspect':city['today']['suspect'],
+                               'dead':city['today']['dead'],
+                               'heal':city['today']['heal']
+                              },ignore_index=True)
     return df_area
+
 
 def chinaSummary(data):
     data['chinaTotal']['AllOrToday'] = 'All'
