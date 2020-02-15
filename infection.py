@@ -27,9 +27,9 @@ def getAreaDataFrame(response_data):
                        'City':'',               
                        'AllOrToday':'Today',
                        'confirm':country['today']['confirm'],
-                       'suspect':country['today']['suspect'],
-                       'dead':country['today']['dead'],
-                       'heal':country['today']['heal']
+                       #'suspect':country['today']['suspect'],
+                       #'dead':country['today']['dead'],
+                       #'heal':country['today']['heal']
                       },ignore_index=True)
         if 'children' in country:
             country_tree = country['children']
@@ -50,9 +50,9 @@ def getAreaDataFrame(response_data):
                        'City':'',               
                        'AllOrToday':'Today',
                        'confirm':province['today']['confirm'],
-                       'suspect':province['today']['suspect'],
-                       'dead':province['today']['dead'],
-                       'heal':province['today']['heal']
+                       #'suspect':province['today']['suspect'],
+                       #'dead':province['today']['dead'],
+                       #'heal':province['today']['heal']
                       },ignore_index=True)
                 if 'children' in province:
                     province_tree = province['children']
@@ -72,9 +72,9 @@ def getAreaDataFrame(response_data):
                                'City':city['name'],               
                                'AllOrToday':'Today',
                                'confirm':city['today']['confirm'],
-                               'suspect':city['today']['suspect'],
-                               'dead':city['today']['dead'],
-                               'heal':city['today']['heal']
+                               #'suspect':city['today']['suspect'],
+                               #'dead':city['today']['dead'],
+                               #'heal':city['today']['heal']
                               },ignore_index=True)
     return df_area
 
